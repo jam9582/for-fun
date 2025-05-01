@@ -1,0 +1,21 @@
+{
+  "name": "chrome-dinosaur-game",
+  "version": "1.0.0",
+  "description": "크롬 브라우저에서 오프라인일 때 나타나는 공룡 게임을 구현해보기",
+  "main": "src/scripts/game.js",
+  "scripts": {
+    "start": "live-server src"
+  },
+  "keywords": [
+    "dinosaur",
+    "game",
+    "chrome",
+    "javascript"
+  ],
+  "author": "권재은",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}

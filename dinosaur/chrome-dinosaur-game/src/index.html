@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>크롬 공룡 게임</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        canvas {
+            display: block;
+            margin: 0 auto;
+            border: 1px solid black;
+        }
+        #restartButton {
+            display: none; /* 버튼은 기본적으로 숨김 */
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div id="score">Score: 0</div>
+    </div>
+    <button id="restartButton">다시 시작</button>
+    <script src="scripts/game.js"></script>
+</body>
+</html>
