@@ -7,8 +7,8 @@ let obstacles = [];
 let score = 0;
 let gameOver = false;
 
-let obstacleSpeed = 0.01; // 장애물 초기 속도
-const speedIncrement = 0.01; // 속도 증가율
+let obstacleSpeed = 0.001; // 장애물 초기 속도
+const speedIncrement = 0.005; // 속도 증가율
 
 // 배경 이미지 관련 변수
 const backgroundImage = new Image();
@@ -72,9 +72,14 @@ function render() {
 }
 
 function updateObstacles() {
-    // 매 프레임마다 랜덤하게 장애물 생성 여부를 결정
-    if (Math.random() < 0.02) { // 2% 확률로 장애물 생성
-        obstacles.push(new Obstacle());
+    const minDistance = 200; // 장애물 간 최소 거리
+
+    // 마지막 장애물의 x 좌표 확인
+    const lastObstacle = obstacles[obstacles.length - 1];
+    if (!lastObstacle || lastObstacle.x < canvas.width - minDistance) {
+        if (Math.random() < 0.02) { // 2% 확률로 장애물 생성
+            obstacles.push(new Obstacle());
+        }
     }
 
     obstacles.forEach((obstacle, index) => {
@@ -181,7 +186,6 @@ class Obstacle {
         this.height = this.type === 'sprout' ? 30 : 60; // sprout는 키 1, flower는 키 2
         this.x = canvas.width; // 화면 맨 오른쪽에서 시작
         this.y = canvas.height - this.height; // 바닥에 위치
-        this.speed = obstacleSpeed; // 장애물 속도
         this.image = new Image();
 
         if (this.type === 'sprout') {
@@ -192,7 +196,7 @@ class Obstacle {
     }
 
     update() {
-        this.x -= this.speed; // 왼쪽으로 장애물 이동
+        this.x -= obstacleSpeed; // 전역 속도를 사용하여 장애물 이동
     }
 
     render() {
