@@ -6,14 +6,44 @@
     <title>크롬 공룡 게임</title>
     <link rel="stylesheet" href="styles/style.css">
     <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* 화면 전체 높이를 사용 */
+            margin: 0;
+            background-color: #f7f7f7; /* 배경색 설정 */
+        }
+
+        #game-container {
+            position: relative;
+            width: 800px; /* canvas와 동일한 너비 */
+            height: 500px; /* canvas와 동일한 높이 */
+        }
+
         canvas {
             display: block;
             margin: 0 auto;
-            border: 1px solid black;
+            border: 1px solid burlywood; /* canvas 자체의 테두리는 제거 */
         }
+
+        #frame {
+            position: absolute;
+            top: -125px;
+            left: -200px;
+            width: 150%;
+            height: 150%;
+            background: url('images/frame.png') no-repeat center center;
+            background-size: cover; /* frame.png를 container 크기에 맞춤 */
+            pointer-events: none; /* frame이 클릭 이벤트를 차단하지 않도록 설정 */
+        }
+
         #restartButton {
-            display: none; /* 버튼은 기본적으로 숨김 */
-            margin: 20px auto;
+            display: none; /* 기본적으로 숨김 */
+            position: absolute; /* canvas 아래에 고정 */
+            top: 520px; /* canvas 아래에 위치 */
+            left: 50%;
+            transform: translateX(-50%); /* 버튼을 화면 중앙으로 정렬 */
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
@@ -23,6 +53,7 @@
 <body>
     <div id="game-container">
         <canvas id="gameCanvas" width="800" height="500"></canvas>
+        <div id="frame"></div> <!-- frame을 canvas 위에 추가 -->
     </div>
     <button id="restartButton">다시 시작</button>
     <script src="scripts/game.js"></script>

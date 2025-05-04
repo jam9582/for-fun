@@ -7,9 +7,6 @@ let obstacles = [];
 let score = 0;
 let gameOver = false;
 
-let obstacleSpeed = 0.001; // 장애물 초기 속도
-const speedIncrement = 0.005; // 속도 증가율
-
 // 배경 이미지 관련 변수
 const backgroundImage = new Image();
 backgroundImage.src = 'images/background.png'; // 배경 이미지 경로
@@ -40,8 +37,13 @@ function init() {
     obstacles = [];
     score = 0;
     gameOver = false;
+
+    // 장애물 속도와 가속도 초기화
+    obstacleSpeed = 0.001; // 초기 속도
+    speedIncrement = 0.005; // 초기 가속도
+
     restartButton.style.display = 'none';
-    requestAnimationFrame(gameLoop); 
+    requestAnimationFrame(gameLoop);
 }
 
 // 게임 반복
@@ -204,9 +206,15 @@ class Obstacle {
     }
 }
 
-// 공룡 점프는 스페이스바
+// 공룡 점프는 스페이스바 또는 마우스 클릭
 document.addEventListener('keydown', (event) => {
     if (event.code === 'Space' && !gameOver) {
+        dinosaur.jump();
+    }
+});
+
+canvas.addEventListener('mousedown', () => {
+    if (!gameOver) {
         dinosaur.jump();
     }
 });
